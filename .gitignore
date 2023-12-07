@@ -1,0 +1,7 @@
+.DS_*
+**/node_modules/
+*.log
+*.gz
+*/.DS_*
+.env
+database/data/

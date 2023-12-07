@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Team</title>
+    <link rel="stylesheet" href="/css/pokemon/pokesprite-pokemon-gen8.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/create-team.css" />
+    <script src="js/all.js" type="module"></script>
+    <script src="js/teams/edit-teams.js" type="module"></script>
+    <!-- BEGIN INSTALLABLE APP-->
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+    <meta name="theme-color" content="#cd385a" />
+    <link rel="apple-touch-icon" href="/images/pokeforge192.png" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" />
+    <!-- END INSTALLABLE APP-->
+  </head>
+  <body>
+    <header
+      class="container-fluid d-flex flex-column justify-content-center align-items-center mb-4">
+      <img src="images/Edit-Team.png" class="img-fluid" width="500vw" />
+      <div class="row container">
+        <div class="col ms-5">
+          <a id="home-link" class="link-info fs-5 mb-2" href="home">Home</a>
+        </div>
+        <div class="col d-flex flex-row-reverse me-5">
+          <div class="dropdown me-3 mb-2">
+            <button
+              type="button"
+              class="btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              data-bs-auto-close="outside"
+              id="btn-preferences">
+              Username
+            </button>
+            <div class="dropdown-menu p-2" id="preferences">
+              <p class="text-center fs-6">User Preferences:</p>
+              <div class="form-check form-switch">
+                <input
+                  type="checkbox"
+                  class="form-check-input custom-switch"
+                  role="switch"
+                  id="shiny-check" />
+                <label class="form-check-label" for="shiny-check">Shiny Sprites</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid col-lg-8 col-sm-10 justify-content-center mx-auto">
+      <div class="alert alert-primary mx-2 mx-lg-4" role="alert" id="info-guide">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+          viewBox="0 0 16 16"
+          role="img"
+          aria-label="Info:"
+          width="1em">
+          <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </svg>
+        Only valid teams will be accepted. Here are the guidelines for making a valid team:
+        <ul>
+          <li>Between 1 and 6 Pokemon are specified</li>
+          <li>Every specified Pokemon has an ability that it is allowed to have</li>
+          <li>Every specified Pokemon has between 1 and 4 moves it is allowed to have</li>
+          <li>
+            Not all Pokemon need a held item, but if it has one it must be one with a use in battle
+          </li>
+        </ul>
+        <hr />
+        Note: Currently the data is only up to
+        <a
+          target="_blank"
+          class="alert-link"
+          href="https://bulbapedia.bulbagarden.net/wiki/Generation_VIII">
+          Generation 8
+        </a>
+        <br />
+        To view a Pokemon to see moves and abilities it can have, you can search for it over at the
+        <a target="" class="alert-link" href="pokemon"> Pokemon page </a>
+        or click its sprite when it appears next to the "Pokemon Name" input box (Note: the sprite
+        might not appear on smaller screens).
+      </div>
+      <div
+        id="team-info"
+        class="d-flex justify-content-center align-items-center mb-3 mx-3 mx-sm-5">
+        <label class="fs-5 text-nowrap me-2"> Team Name: </label>
+        <input id="team-name" name="pokemonlist" class="form-control form-control me-1" required />
+      </div>
+      <div class="form-check form-switch d-flex flex-nowrap gap-3 justify-content-center mb-3">
+        <input
+          class="form-check-input custom-switch"
+          type="checkbox"
+          role="switch"
+          id="public-check" />
+        <label class="form-check-label fs-5" for="public-check" id="public-text">
+          Make this team public?
+        </label>
+      </div>
+      <div class="mx-2 mx-lg-4 accordion mb-5" id="create-accordion">
+        <!-- POKE SLOT 1-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-0"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse0"
+              aria-expanded="true"
+              aria-controls="collapse0">
+              Team Slot 1
+            </button>
+          </h2>
+          <div
+            id="collapse0"
+            class="accordion-collapse collapse show"
+            data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-0"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1"
+                    required />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-0" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-0"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-0"
+                    class="form-control-sm form-control poke-text-input me-1"
+                    required />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-0"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-0-0"
+                  class="form-control-sm form-control poke-text-input"
+                  required />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-0-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-0-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-0-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POKE SLOT 2-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-1"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse1"
+              aria-expanded="false"
+              aria-controls="collapse1">
+              Team Slot 2
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-1"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1" />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-1" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-1"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-1"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-1"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-1-0"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-1-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-1-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-1-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POKE SLOT 3-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-2"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse2"
+              aria-expanded="false"
+              aria-controls="collapse2">
+              Team Slot 3
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-2"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1" />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-2" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-2"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-2"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-2"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-2-0"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-2-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-2-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-2-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POKE SLOT 4-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-3"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse3"
+              aria-expanded="false"
+              aria-controls="collapse3">
+              Team Slot 4
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-3"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1" />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-3" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-3"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-3"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-3"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-3-0"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-3-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-3-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-3-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POKE SLOT 5-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-4"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse4"
+              aria-expanded="false"
+              aria-controls="collapse4">
+              Team Slot 5
+            </button>
+          </h2>
+          <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-4"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1" />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-4" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-4"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-4"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-4"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-4-0"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-4-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-4-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-4-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POKE SLOT 6-->
+        <div class="accordion-item">
+          <h2 class="accordian-header">
+            <button
+              id="btn-5"
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse5"
+              aria-expanded="false"
+              aria-controls="collapse5">
+              Team Slot 6
+            </button>
+          </h2>
+          <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="infoAccordian">
+            <div class="accordion-body container-fluid d-flex flex-column d-flex px-1 px-md-4">
+              <div class="d-flex justify-content-center mb-3 poke-name">
+                <div class="align-items-start d-flex flex-column">
+                  <label class="me-1 fs-6"> Pokemon Name: </label>
+                  <input
+                    list="pokelist"
+                    id="teamslot-5"
+                    name="pokemonlist"
+                    class="form-control-sm form-control poke-name-input me-1" />
+                </div>
+                <img
+                  src="images/mystery.png"
+                  width="68px"
+                  height="68px"
+                  class="sprite-placeholder mystery-5" />
+                <a target="_blank" href="#">
+                  <span class="mb-3 pokesprite d-none pokemon name-sprite" id="sprite-5"></span>
+                </a>
+              </div>
+              <div
+                class="d-flex align-items-center justify-content-evenly abil-item-container mb-3 flex-column gap-2 gap-md-0 flex-md-row">
+                <div
+                  class="align-items-center d-flex justify-content-center ability-container me-2 me-md-0">
+                  <label class="me-1 fs-6"> Ability: </label>
+                  <input
+                    list="all-abils-list"
+                    id="abilityslot-5"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+                <div
+                  class="align-items-center d-flex justify-content-center item-container ms-1 ms-md-0">
+                  <label class="me-1 fs-6"> Item: </label>
+                  <input
+                    list="itemlist"
+                    id="itemslot-5"
+                    class="form-control-sm form-control poke-text-input me-1" />
+                </div>
+              </div>
+              <span class="mb-0 ms-4 ms-lg-1">Moves:</span>
+              <div
+                class="d-flex justify-content-between align-items-center gap-3 flex-lg-row flex-column"
+                class="moves-container">
+                <input
+                  list="all-moves-list"
+                  id="moveslot-5-0"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-5-1"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-5-2"
+                  class="form-control-sm form-control poke-text-input" />
+                <input
+                  list="all-moves-list"
+                  id="moveslot-5-3"
+                  class="form-control-sm form-control poke-text-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of entries-->
+      </div>
+      <!--Start of offense/defense showcase-->
+      <div class="card mb-5 mx-2 mx-lg-4">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item" id="defense-nav">
+              <a class="nav-link active">Defense</a>
+            </li>
+            <li class="nav-item" id="offense-nav">
+              <a class="nav-link">Offense</a>
+            </li>
+            <li class="nav-item" id="hide-nav">
+              <a class="nav-link">Hide</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <!-- Defense -->
+          <div id="defense">
+            <div class="table-responsive">
+              <table class="table text-center table-striped table-borderless">
+                <colgroup>
+                  <col span="1" />
+                  <col span="6" />
+                  <col span="2" />
+                </colgroup>
+                <thead>
+                  <tr class="justify-content-center head-row">
+                    <th scope="col"></th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-0" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-1" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-2" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-3" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-4" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-5" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th>Total Weak</th>
+                    <th>Total Resist</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="defense-normal">
+                    <th scope="row"><img src="images/types/normal.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-fire">
+                    <th scope="row"><img src="images/types/fire.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-water">
+                    <th scope="row"><img src="images/types/water.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-electric">
+                    <th scope="row"><img src="images/types/electric.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-grass">
+                    <th scope="row"><img src="images/types/grass.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-ice">
+                    <th scope="row"><img src="images/types/ice.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-fighting">
+                    <th scope="row"><img src="images/types/fighting.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-poison">
+                    <th scope="row"><img src="images/types/poison.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-ground">
+                    <th scope="row"><img src="images/types/ground.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-flying">
+                    <th scope="row"><img src="images/types/flying.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-psychic">
+                    <th scope="row"><img src="images/types/psychic.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-bug">
+                    <th scope="row"><img src="images/types/bug.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-rock">
+                    <th scope="row"><img src="images/types/rock.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-ghost">
+                    <th scope="row"><img src="images/types/ghost.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-dragon">
+                    <th scope="row"><img src="images/types/dragon.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-dark">
+                    <th scope="row"><img src="images/types/dark.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-steel">
+                    <th scope="row"><img src="images/types/steel.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="defense-fairy">
+                    <th scope="row"><img src="images/types/fairy.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Offense -->
+          <div id="offense" class="d-none">
+            <div class="table-responsive">
+              <table class="table text-center table-striped table-borderless">
+                <colgroup>
+                  <col span="1" />
+                  <col span="6" />
+                  <col span="2" />
+                </colgroup>
+                <thead>
+                  <tr class="justify-content-center head-row">
+                    <th scope="col"></th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-0" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-1" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-2" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-3" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-4" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th scope="col">
+                      <img src="images/mystery.png" width="68px" height="68px" class="mystery-5" />
+                      <a target="_blank" href="#">
+                        <span class="pokesprite pokemon d-none"></span>
+                      </a>
+                    </th>
+                    <th>Total No Effect</th>
+                    <th>Total Not Effective</th>
+                    <th>Total Super-effective</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="offense-normal">
+                    <th scope="row"><img src="images/types/normal.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-fire">
+                    <th scope="row"><img src="images/types/fire.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-water">
+                    <th scope="row"><img src="images/types/water.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-electric">
+                    <th scope="row"><img src="images/types/electric.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-grass">
+                    <th scope="row"><img src="images/types/grass.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-ice">
+                    <th scope="row"><img src="images/types/ice.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-fighting">
+                    <th scope="row"><img src="images/types/fighting.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-poison">
+                    <th scope="row"><img src="images/types/poison.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-ground">
+                    <th scope="row"><img src="images/types/ground.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-flying">
+                    <th scope="row"><img src="images/types/flying.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-psychic">
+                    <th scope="row"><img src="images/types/psychic.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-bug">
+                    <th scope="row"><img src="images/types/bug.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-rock">
+                    <th scope="row"><img src="images/types/rock.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-ghost">
+                    <th scope="row"><img src="images/types/ghost.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-dragon">
+                    <th scope="row"><img src="images/types/dragon.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-dark">
+                    <th scope="row"><img src="images/types/dark.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-steel">
+                    <th scope="row"><img src="images/types/steel.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr id="offense-fairy">
+                    <th scope="row"><img src="images/types/fairy.png" class="tbl-icon" /></th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="divider">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4 mt-2 d-grid col-8 col-lg-6 mx-auto">
+        <div class="alert alert-danger d-none" role="alert" id="upload-err"></div>
+        <input
+          class="mx-2 btn btn-lg btn-outline-warning my-btn mb-3"
+          type="button"
+          id="upload-btn"
+          value="Upload Team" />
+        <div class="alert alert-success d-none" role="alert" id="upload-succ">
+          Success! Your team was saved!
+        </div>
+      </div>
+    </div>
+    <!--various datalists used-->
+    <datalist id="pokelist"> </datalist>
+    <datalist id="itemlist"> </datalist>
+    <datalist id="all-moves-list"></datalist>
+    <datalist id="all-abils-list"></datalist>
+    <datalist id="movelist-0"> </datalist>
+    <datalist id="abilitylist-0"> </datalist>
+    <datalist id="movelist-1"> </datalist>
+    <datalist id="abilitylist-1"> </datalist>
+    <datalist id="movelist-2"> </datalist>
+    <datalist id="abilitylist-2"> </datalist>
+    <datalist id="movelist-3"> </datalist>
+    <datalist id="abilitylist-3"> </datalist>
+    <datalist id="movelist-4"> </datalist>
+    <datalist id="abilitylist-4"> </datalist>
+    <datalist id="movelist-5"> </datalist>
+    <datalist id="abilitylist-5"> </datalist>
+  </body>
+</html>

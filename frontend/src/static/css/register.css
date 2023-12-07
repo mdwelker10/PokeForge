@@ -1,0 +1,14 @@
+a {
+  text-decoration: none;
+  color: #ffe600;
+}
+
+.square-box {
+  height: 100vh;
+  width: 100vw;
+}
+
+.registerBoxBorder {
+  background-color: #091644;
+  border-radius: 10px;
+}

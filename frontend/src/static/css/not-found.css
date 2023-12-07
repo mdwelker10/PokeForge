@@ -1,0 +1,17 @@
+.box {
+  border: goldenrod 1px solid;
+  background-color: rgb(159, 43, 70);
+  box-shadow: 5px 5px 5px rgb(97, 25, 25);
+}
+
+li {
+  color: rgb(73, 144, 237);
+}
+
+.link-info {
+  text-decoration: none;
+}
+
+.link-info:hover {
+  text-decoration: underline;
+}

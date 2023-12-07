@@ -1,0 +1,27 @@
+.link-info {
+  text-decoration: none;
+}
+
+.link-info-small {
+  font-size: 0.6em;
+}
+
+.link-info:hover {
+  text-decoration: underline;
+}
+
+.v-border {
+  width: 3px;
+  background-color: rgb(185, 185, 36);
+  border-radius: 99px;
+}
+
+#searchGroup {
+  box-shadow: 5px 5px 5px rgb(97, 25, 25);
+  border-radius: 10px;
+}
+
+.links {
+  background-color: #091644;
+  border-radius: 10px;
+}

@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+a {
+  text-decoration: none;
+  color: #ffe600;
+}
+
+#create {
+  background-color: #091644;
+  border-radius: 10px;
+}
+
+#createButton {
+  color: #ffe600;
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  max-width: 1000px;
+  padding: 0;
+}
+
+#viewedit {
+  background-color: #091644;
+  border-radius: 10px;
+}
+
+#viewEditButton {
+  color: #ffe600;
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  max-width: 1000px;
+  padding: 0;
+}
+
+#viewother {
+  background-color: #091644;
+  border-radius: 10px;
+}
+
+#viewOtherButton {
+  color: #ffe600;
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  max-width: 1000px;
+  padding: 0;
+}
+
+.links {
+  background-color: #091644;
+  border-radius: 10px;
+}
+
+#viewpokedataButton {
+  color: #ffe600;
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  max-width: 1000px;
+  padding: 0;
+}
+
+#logoutButton {
+  color: #ffe600;
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  max-width: 1000px;
+  padding: 0;
+}
+
+#viewpoke {
+  background-color: #091644;
+  border-radius: 10px;
+}

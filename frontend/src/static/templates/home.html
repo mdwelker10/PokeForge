@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PokeForge</title>
+
+    <link rel="stylesheet" href="css/pokemon/pokesprite-pokemon-gen8.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <script src="js/all.js" type="module"></script>
+    <script src="js/home-script.js" type="module"></script>
+    <!-- BEGIN INSTALLABLE APP-->
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+    <meta name="theme-color" content="#cd385a" />
+    <link rel="apple-touch-icon" href="/images/pokeforge192.png" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" />
+    <!-- END INSTALLABLE APP-->
+  </head>
+  <body>
+    <header class="p-2">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="images/Poke-Forge.png" class="img-fluid" alt="Responsive image" width="650vw" />
+        <h1 class="fs-2">A Pokemon Team Builder</h1>
+      </div>
+      <div class="dropdown d-flex flex-row-reverse me-3">
+        <button
+          type="button"
+          class="btn dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          data-bs-auto-close="outside"
+          id="btn-preferences">
+          Username
+        </button>
+        <div class="dropdown-menu p-2" id="preferences">
+          <p class="text-center fs-6">User Preferences:</p>
+          <div class="form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input custom-switch"
+              role="switch"
+              id="shiny-check" />
+            <label class="form-check-label" for="shiny-check">Shiny Sprites</label>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container mt-3 col-lg-8">
+      <h3 class="mt-4 py-4 bg-gradient text-center" id="create">
+        <button id="createButton">Create Team</button>
+      </h3>
+      <h3 class="mt-4 py-4 bg-gradient text-center" id="viewedit">
+        <button id="viewEditButton">View/Edit Teams</button>
+      </h3>
+      <h3 class="mt-4 py-4 bg-gradient text-center" id="viewother">
+        <button id="viewOtherButton">View Other Trainers Teams</button>
+      </h3>
+      <h3 class="mt-4 py-4 bg-gradient text-center" id="viewpoke">
+        <button id="viewpokedataButton">View Pokemon Data</button>
+      </h3>
+      <h3 class="mt-4 py-4 bg-gradient text-center" id="viewpoke">
+        <button id="logoutButton">Log Out</button>
+      </h3>
+      <h1 class="mt-4 py-4 text-center fs-2">Welcome to the Poke-Forge App!</h1>
+      <h2 class="py-1 fs-4 text-opacity-75">
+        Poke-Forge is a Pokemon Team Building App. It allows you to create many teams of 6 pokemon,
+        so that you can have a place where you can easily store and manage your teams to use in
+        whatever pokemon battles you want. Just like in the games, each pokemon can hold an item, as
+        well as having their own list of moves. You can also give each of your teams a name, so that
+        you can easily remember which team is which, you also can view your teams stats: what types
+        you have on your team, as well as what types they are effective/weak against. When creating
+        a team you can also choose whether or not you want to make your team public to other users.
+      </h2>
+    </div>
+
+    <footer class="container">
+      <div class="links mt-4">
+        <h2 class="mt-4 py-4 text-center">Links</h2>
+        <h3 class="mt-4 py-4 text-center">
+          <a href="https://www.textstudio.com/">Pokemon text effect</a>
+        </h3>
+      </div>
+    </footer>
+  </body>
+</html>

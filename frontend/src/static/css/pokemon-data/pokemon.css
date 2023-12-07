@@ -1,0 +1,21 @@
+.poke-entry {
+  text-decoration: none;
+  background-color: #9f2b46;
+  border-radius: 10px;
+  border: goldenrod 0.75px solid;
+  box-shadow: 5px 5px 5px rgb(97, 25, 25);
+}
+
+.poke-link {
+  color: gold;
+  text-decoration: none;
+}
+
+.poke-link:hover {
+  color: rgb(210, 179, 6);
+  text-decoration: underline;
+}
+
+.opacity {
+  opacity: 0.9;
+}

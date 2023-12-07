@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap");
+
+#poke-name {
+  font-family: "Kanit", sans-serif;
+  font-size: 3em;
+}
+
+#chart-container {
+  height: 300px;
+}
+
+#abil-colgroup:first-child {
+  width: 30%;
+}
+
+#abil-colgroup:nth-child(2) {
+  width: 60%;
+}
+
+#abil-colgroup:nth-child(3) {
+  width: 10%;
+}
+
+.table {
+  --bs-table-striped-color: rgb(255, 255, 255);
+  --bs-table-color: rgb(255, 255, 255);
+  --bs-table-stripped-bg-factor: 0.3;
+}
+
+.tbl-head {
+  color: rgb(224, 209, 123);
+}
+
+.highlight-row {
+  color: rgb(88, 227, 88);
+}

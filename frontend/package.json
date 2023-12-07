@@ -1,0 +1,21 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "pm2-runtime start ./src/app.js",
+    "stop": "pm2 stop pokeforge-frontend",
+    "restart": "pm2 restart pokeforge-frontend",
+    "start_dev": "pm2-dev start ./src/app.js --raw",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "express": "^4.18.2",
+    "pm2": "^5.3.0"
+  }
+}
